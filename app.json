@@ -1,0 +1,14 @@
+{
+  "name": "FM - SELF",
+  "description": "Lightweight WhatsApp Bot",
+  "repository": "https://github.com/Fariiid-M/SELF-BOT",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": [
+     "wabot",
+     "baileys",
+     "botwa",
+     "bot", 
+     "whatsapp", 
+     "whatsapp-bot"
+   ]
+}
