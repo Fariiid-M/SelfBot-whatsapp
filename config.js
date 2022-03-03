@@ -1,7 +1,5 @@
-let fs = require('fs')
-let chalk = require('chalk')
-
-let fs = require('fs')
+let fs = require('fs');
+let chalk = require('chalk');
 
 //Nomer Owner
 global.owner = ['6285890441472','6285606404329'] // Put your number here

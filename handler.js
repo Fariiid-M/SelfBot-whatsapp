@@ -1,6 +1,7 @@
-let util = require('util')
-let simple = require('./lib/simple')
-let { MessageType } = require('@adiwajshing/baileys')
+const util = require('util');
+const simple = require('./lib/simple');
+const { Goodbye3, Welcome3 } = require('knights-canvas');
+const { MessageType } = require('@adiwajshing/baileys');
 
 const isNumber = x => typeof x === 'number' && !isNaN(x)
 const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(resolve, ms))
@@ -20,8 +21,6 @@ module.exports = {
           if (!m.msg.url) await this.updateMediaMessage(m)
           break
       }
-      m.exp = 0
-      m.limit = false
       try {
         let user = global.db.data.users[m.sender]
         if (typeof user !== 'object') global.db.data.users[m.sender] = {}
@@ -39,45 +38,35 @@ module.exports = {
         if (chat) {
           if (!('isMute' in chat)) chat.isMute = false
           if (!('welcome' in chat)) chat.welcome = false
-          if (!('detect' in chat)) chat.detect = false
           if (!('sWelcome' in chat)) chat.sWelcome = ''
           if (!('sBye' in chat)) chat.sBye = ''
-          if (!('sPromote' in chat)) chat.sPromote = ''
-          if (!('sDemote' in chat)) chat.sDemote = ''
-          if (!('delete' in chat)) chat.delete = true
-          if (!('antiLink' in chat)) chat.antiLink = false
-          if (!('getmsg' in chat)) chat.getmsg = false
-          if (!('viewonce' in chat)) chat.viewonce = false
         } else global.db.data.chats[m.chat] = {
           isMute: false,
           welcome: false,
-          detect: false,
           sWelcome: '',
-          sBye: '',
-          sPromote: '',
-          sDemote: '',
-          delete: true,
-          antiLink: false,
-          getmsg: false,
-          viewonce: false
+          sBye: ''
         }
 
         var setting = global.db.data.settings[this.user.jid]
         if (typeof setting !== 'object') global.db.data.settings[this.user.jid] = {}
         if (setting) {
           if (!('anticall' in setting)) setting.anticall = false
+          if (!('antiviewonce' in setting)) setting.antiviewonce = true
+          if (!('antidelete' in setting)) setting.antidelete = true
           if (!('autoread' in setting)) setting.autoread = false
-          if (!('self' in setting)) setting.self = false
+          if (!('self' in setting)) setting.self = true
         } else global.db.data.settings[this.user.jid] = {
           anticall: false,
           autoread: false,
-          self: false
+          self: true,
+          antiviewonce: true,
+          antidelete: true,
         }
       } catch (e) {
         console.error(e)
       }
       if (!m.fromMe && setting.self) return
-      uf (typeof m.text !== 'string') m.text = ''
+      if (typeof m.text !== 'string') m.text = ''
       for (let name in global.plugins) {
         let plugin = global.plugins[name]
         if (!plugin) continue
@@ -92,8 +81,6 @@ module.exports = {
         }
       }
       if (m.isBaileys) return
-      m.exp += Math.ceil(Math.random() * 10)
-
       let usedPrefix
       let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
 
@@ -103,9 +90,12 @@ module.exports = {
       let participants = m.isGroup ? groupMetadata.participants : [] || []
       let user = m.isGroup ? participants.find(u => u.jid == m.sender) : {} // User Data
       let bot = m.isGroup ? participants.find(u => u.jid == this.user.jid) : {} // Your Data
-      let isAdmin = user.isAdmin || user.isSuperAdmin || false // Is User Admin?
+      let isAdmin = user?.isAdmin || user?.isSuperAdmin || false // Is User Admin?
       let isBotAdmin = bot.isAdmin || bot.isSuperAdmin || false // Are you Admin?
       let isBlocked = this.blocklist.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != this.user.jid).includes(m.sender) // Is User Blocked?
+      
+      if (db.data.settings[this.user.jid].self && !m.fromMe) return //Self Bot??
+      
       for (let name in global.plugins) {
         let plugin = global.plugins[name]
         if (!plugin) continue
@@ -162,7 +152,7 @@ module.exports = {
           m.plugin = name
           if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
             let chat = global.db.data.chats[m.chat]
-            if ((name != 'mute-chat.js' || name != 'group-info.js') && chat && chat.isMute) return // Except this
+            if (!['mute-set.js', 'group-info.js'].includes(name) && chat && chat.isMute && !isOwner) return // Except this
            }
           if (plugin.owner && !isOwner) { // Number Owner
             fail('owner', m, this)
@@ -174,7 +164,7 @@ module.exports = {
           } else if (plugin.botAdmin && !isBotAdmin) { // You Admin
             fail('botAdmin', m, this)
             continue
-          } else if (plugin.admin && !isAdmin) { // User Admin
+          } else if (plugin.admin && !isAdmin && !isOwner) { // User Admin
             fail('admin', m, this)
             continue
           }
@@ -267,56 +257,71 @@ module.exports = {
   },
   async participantsUpdate({ jid, participants, action }) {
     let chat = global.db.data.chats[jid] || {}
-    let text = ''
+    let tehs = ''
     switch (action) {
       case 'add':
       case 'remove':
         if (chat.welcome) {
+          
+          //GroupMetadata
           let groupMetadata = await this.groupMetadata(jid)
           for (let user of participants) {
-            let pp = './src/avatar_contact.png'
+
+            //Profile user
+            let pp
             try {
-              pp = await this.getProfilePicture(user)
-            } catch (e) {
-            } finally {
-              text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc) :
-                (chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
-              this.sendFile(jid, pp, 'pp.jpg', text, null, false, {
-                contextInfo: {
-                  mentionedJid: [user]
-                }
-              })
-            }
+            pp = await this.getProfilePicture(user)
+           } catch {
+           pp = "https://telegra.ph/file/12e0ed1cff84f2a5aed91.png"
+           }
+
+           //Teks Welcome
+           tehs = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Selamat datang @user 👋').replace('@subject', groupMetadata.subject).replace('@desc', groupMetadata.desc ? groupMetadata.desc : '' ) : 
+          (chat.sBye || this.bye || conn.bye || 'Selamat tinggal @user!')).replace(/@user/g, '@' + user.split`@`[0]).replace(/#readmore/g, String.fromCharCode(8206).repeat(4001))
+                   
+        let wel = await new Welcome3()
+                  .setAvatar(pp)
+                  .setUsername(parseInt(user))
+                  .toAttachment();
+        let bye = await new Goodbye3()
+                  .setAvatar(pp)
+                  .setUsername(parseInt(user))
+                  .toAttachment();
+
+                  this.sendMessage(jid, {
+                    locationMessage: { 
+                      jpegThumbnail: action === 'add' ? wel.toBuffer() : bye.toBuffer() 
+                    },
+                    contentText: tehs,
+                    footerText: '',
+                    buttons: [{ 
+                      buttonId: `.infogc`, 
+                      buttonText: { 
+                        displayText: '𝖎𝖓𝖋𝖔 𝖌𝖗𝖔𝖚𝖕 🪶' 
+                      }, 
+                      type: 1 
+                    }],
+                    headerType: 6
+                  }, MessageType.buttonsMessage, { 
+                    contextInfo: { 
+                      mentionedJid: this.parseMention(tehs) 
+                    }})
           }
         }
-        break
-      case 'promote':
-        text = (chat.sPromote || this.spromote || conn.spromote || '@user ```is now Admin```')
-      case 'demote':
-        if (!text) text = (chat.sDemote || this.sdemote || conn.sdemote || '@user ```is no longer Admin```')
-        text = text.replace('@user', '@' + participants[0].split('@')[0])
-        if (chat.detect) m.reply(text)
-        break
-    }
+        break;
+      }
   },
   async delete(m) {
     if (m.key.fromMe) return
-    let chat = global.db.data.chats[m.key.remoteJid]
-    if (chat.delete) return
-    await this.sendButton(m.key.remoteJid, `
-Terdeteksi @${m.participant.split`@`[0]} telah menghapus pesan
-
-Untuk mematikan fitur ini, ketik
-*.enable delete*
-`.trim(), '© wabot-aq', 'Matikan', '.1 delete', m.message)
-    this.copyNForward(m.key.remoteJid, m.message).catch(e => console.log(e, m))
+    if (!db.data.settings[this.user.jid].antidelete) return
+    await this.sendButton(owner[0]+'@s.whatsapp.net', `
+Terdeteksi @${m.participant.split`@`[0]} *( ${m.key.remoteJid.endsWith('@g.us') ? 'Group '+this.getName(m.key.remoteJid) : m.key.remoteJid == 'status@broadcast' ? 'Story WhatsApp' : this.getName(m.key.remoteJid)} )* telah menghapus pesan...`.trim(), '', 'Matikan', '.antidelete off', m.message)
+    this.copyNForward(owner[0]+'@s.whatsapp.net', m.message).catch(e => console.log(e, m))
   },
   async onCall(json) {
-    if (!setting.anticall) return
+    if (!db.data.settings[this.user.jid].anticall) return
     let jid = json[2][0][1]['from']
     let isOffer = json[2][0][2][0][0] == 'offer'
-    let users = global.db.data.users
-    let user = users[jid] || {}
     if (jid && isOffer) {
       const tag = this.generateMessageTag()
       const nodePayload = ['action', 'call', ['call', {
@@ -328,8 +333,11 @@ Untuk mematikan fitur ini, ketik
         'call-creator': `${jid.split`@`[0]}@s.whatsapp.net`,
         'count': '0'
       }, null]]]]
-      this.sendJSON(nodePayload, tag)
-      m.reply('Dimohon untuk tidak menelpon bot!')
+      await this.sendJSON(nodePayload, tag)
+      this.reply(jid.split`@`[0]+'@s.whatsapp.net', 'Dimohon untuk tidak menelpon...')
+      .then(()=>{
+        this.blockUser(jid, "add")
+      })
     }
   }
 }

@@ -11,6 +11,7 @@ const Readline = require('readline')
 const cp = require('child_process')
 const _ = require('lodash')
 const path = require('path')
+const axios = require('axios')
 const fs = require('fs')
 var low
 try {
@@ -43,8 +44,12 @@ global.DATABASE = global.db // Backwards Compatibility
 
 global.conn = new WAConnection()
 
-// Naikkan versi jika error qr code atau tidak bisa connect
-conn.version = [2, 2143, 3]
+axios.get("https://web.whatsapp.com/check-update?version=1&platform=web").then(versi => {
+const Json = versi.data;
+conn.version = [Number(Json.currentVersion.split(".")[0]), 
+Number(Json.currentVersion.split(".")[1]), 
+Number(Json.currentVersion.split(".")[2])];
+})
 
 let authFile = opts['session'] ? opts['session'] + '.json' : `session.data.json`
 if (fs.existsSync(authFile)) conn.loadAuthInfo(authFile)
