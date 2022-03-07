@@ -91,7 +91,7 @@ module.exports = {
       let user = m.isGroup ? participants.find(u => u.jid == m.sender) : {} // User Data
       let bot = m.isGroup ? participants.find(u => u.jid == this.user.jid) : {} // Your Data
       let isAdmin = user?.isAdmin || user?.isSuperAdmin || false // Is User Admin?
-      let isBotAdmin = bot.isAdmin || bot.isSuperAdmin || false // Are you Admin?
+      let isBotAdmin = bot?.isAdmin || bot?.isSuperAdmin || false // Are you Admin?
       let isBlocked = this.blocklist.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != this.user.jid).includes(m.sender) // Is User Blocked?
       
       if (db.data.settings[this.user.jid].self && !m.fromMe) return //Self Bot??
@@ -252,7 +252,7 @@ module.exports = {
       } catch (e) {
         console.log(m, m.quoted, e)
       }
-      if (setting.autoread) await this.chatRead(m.chat).catch(() => { })
+      if (setting.autoread) this.chatRead(m.chat).catch(() => { })
     }
   },
   async participantsUpdate({ jid, participants, action }) {

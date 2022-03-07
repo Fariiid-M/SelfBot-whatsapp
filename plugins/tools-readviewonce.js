@@ -7,6 +7,6 @@ let handler = async (m, { conn, text }) => {
 handler.help = ['readviewonce']
 handler.tags = ['tools']
 
-handler.command = /^read(view)?once/i
+handler.command = /^(read(view)?once)/i
 
 module.exports = handler

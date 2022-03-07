@@ -19,5 +19,5 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 
 handler.help = ['joox'].map(v => v + ' <judul>')
 handler.tags = ['downloader']
-handler.command = /^joox$/i
+handler.command = /^(joox(dl)?)$/i
 module.exports = handler

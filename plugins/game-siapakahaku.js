@@ -1,0 +1,31 @@
+let fetch = require('node-fetch')
+let timeout = 120000
+let handler = async (m, { conn, usedPrefix, command }) => {
+    conn.siapakahaku = conn.siapakahaku ? conn.siapakahaku : {}
+    let id = m.chat
+    if (id in conn.siapakahaku) {
+        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.siapakahaku[id][0])
+        throw false
+    }
+    let src = await (await fetch('https://raw.githubusercontent.com/BochilTeam/database/master/games/siapakahaku.json')).json()
+    let res = src[Math.floor(Math.random() * src.length)]
+    console.log(res);
+    let caption = `${res.soal}
+
+Timeout *${(timeout / 1000).toFixed(2)} detik*
+Ketik ${usedPrefix}who untuk bantuan
+`.trim()
+    conn.siapakahaku[id] = [
+        await m.reply(caption),
+        res, 
+        setTimeout(async () => {
+            if (conn.siapakahaku[id]) conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${res.data.jawaban}*`, ``, `Next`, `${usedPrefix+command}`, conn.siapakahaku[id][0])
+            delete conn.siapakahaku[id]
+        }, timeout)
+    ]
+}
+handler.help = ['siapakahaku']
+handler.tags = ['game']
+handler.command = /^(siapakahaku)/i
+
+module.exports = handler
