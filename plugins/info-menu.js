@@ -1,6 +1,4 @@
-const fs = require('fs');
-const path = require('path');
-const fetch = require('node-fetch');
+
 const {
   hostname,
   totalmem,
@@ -10,9 +8,6 @@ const {
 let { 
 sizeFormatter 
 } = require('human-readable');
-const {
-  MessageType
-} = require('@adiwajshing/baileys');
 //anu
 let format = sizeFormatter({
 std: 'JEDEC', // 'SI' (default) | 'IEC' | 'JEDEC'
@@ -173,29 +168,12 @@ let sortedCmd = Object.entries(global.db.data.stats).map(([key, value]) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
 
-    //Ngejar keren aja bang hehe, simpelin aja biar makin enteng
-
     //cecan atututu muahmuah
-    let cerray = [
-      'https://telegra.ph/file/0101a08ebea0f21cf75c8.jpg',
-      'https://telegra.ph/file/eaa2c92aa9ac095592875.jpg',
-      'https://telegra.ph/file/1bf1e7b71449bded27ef3.jpg'
-    ]
-
-    //get random in medsos
-    let linkarray = [ 
-      'https://www.youtube.com/watch?v=89XQC7ey8DU',
-      'https://www.instagram.com/p/Cast6YYB0Uz/?utm_medium=copy_link',
-      'https://m.facebook.com/story.php?story_fbid=109231958249015&id=100074866341717'
-    ]
-
-    //mimetype dari dio x koders 
-    let marray = [
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
-      'application/pdf', 
-      'application/vnd.openxmlformats-officedocument.presentationml.presentation', 
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-      ]
+    // let cerray = [
+    //   'https://telegra.ph/file/0101a08ebea0f21cf75c8.jpg',
+    //   'https://telegra.ph/file/eaa2c92aa9ac095592875.jpg',
+    //   'https://telegra.ph/file/1bf1e7b71449bded27ef3.jpg'
+    // ]
 
       //aestetik tik tik tik slebew 
     let arr = [
@@ -204,80 +182,9 @@ let sortedCmd = Object.entries(global.db.data.stats).map(([key, value]) => {
       'https://i.ibb.co/kc7Hw9c/f1643e5d0e1e596cca7fd4d92a446e7f.jpg',
       'https://i.ibb.co/BtPgLhG/036492dd36f7fc55e1f5ee705a4080e0.jpg'
     ]
-
-    //get buffer
-    async function buper(arr){
-    return await getBuffer(pRandom(arr))
-    }
-
-    //model??
-     if (/loc/i.test(conn.menu?.model)) {
-         conn.sendButtonLoc(m.chat, pRandom(arr), text, conn.menu?.after || defaultMenu.after || '© 파리드', 'DASHBOARD', _p+'dashboard')
-      } else if (/doc/i.test(conn.menu?.model)) {
-          conn.sendMessage(m.chat, { 
-              "contentText": text, 
-              "footerText": conn.menu?.after || defaultMenu.after || '© 파리드', 
-              "buttons": [ 
-                { 
-                  "buttonId" : `${_p}dashboard`, 
-                  "buttonText": { 
-                    "displayText": "DASHBOARD" 
-                    }, 
-                    type : "RESPONSE" 
-                    }
-                    ], 
-                    "headerType" : 'DOCUMENT', 
-                    "documentMessage": { 
-                      url: "https://mmg.whatsapp.net/d/f/Ag9iWM60gulM4kKAyAx2T2C2w_KbS9jGaDt51KNgtvj6.enc", 
-                      mimetype: `${pRandom(marray)}`, 
-                      title: "MAU AMBIL ? HEHHE KETAHUAN KAN", 
-                      fileSha256: "lesrwA4VMSbMObxPeniRbUmg/Yp6ZdlDs66/+1BflVQ=", 
-                      fileLength: '88887',
-                       pageCount: 08, 
-                       mediaKey: "E7znyqCqqn/ihgL5O/OUXywIdIO3+9HfNpkZiJBl8NU=", 
-                       fileName: "• 『 S𝖊𝖑𝖋 𝕭𝖔𝖙 』 •", 
-                       fileEncSha256: "n+Wfm4YBKgMEYi1BkoueKvPAkRoVoP0xK7GLYVARQGM=", 
-                       mediaKeyTimestamp: '1630998696', 
-                       jpegThumbnail: await buper(arr),
-                    }
-                    }, MessageType.buttonsMessage, {
-                      sendEphemeral: true,
-                      contextInfo: { 
-                        "externalAdReply": {
-                        "title": "SELF BOT WHATSAPP",
-                        "body": "",
-                        "mediaType": "2",
-                        "thumbnailUrl": "https://telegra.ph/file/d5fc74e55a2efc3cb610b.jpg",
-                        "mediaUrl": pRandom(linkarray),
-                        "thumbnail": await buper(cerray),
-                        "sourceUrl": ""
-                        }, mentionedJid: conn.parseMention(text)
-                       },
-                        quoted: {
-                          key: { 
-                            participant: '8616710606201@s.whatsapp.net', 
-                          },
-                          message: { 
-                            orderMessage: { 
-                              itemCount: 2022,
-                              status: 1,
-                              surface: 70000,
-                              message: 'WANGSAF BOT',
-                              orderTitle: ``,
-                              sellerJid: '0@s.whatsapp.net',
-                              height: '720',
-                              width: '720',
-                              thumbnail: buper(cerray)
-                            }
-                          }
-                        }
-                        })
-       } else if (/gif/i.test(conn.menu?.model)) {
-         let meqia = await fs.readFileSync('./src/asupan.mp4');
-         conn.sendGif(m.chat, meqia, text, m, { contextInfo: { mentionedJid: conn.parseMention(text) }})
-       } else {
-        conn.sendButtonLoc(m.chat, pRandom(arr), text, conn.menu?.after || defaultMenu.after || '© 파리드', 'DASHBOARD', _p+'dashboard')
-       }
+   
+    conn.sendButtonLoc(m.chat, pRandom(arr), text, conn.menu?.after || defaultMenu.after || '© 파리드', 'DASHBOARD', _p+'dashboard')
+     
 
    } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
@@ -313,23 +220,4 @@ function clockString(ms) {
   let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
-}
-
-async function getBuffer(url, options) {
-  try {
-    options ? options : {}
-    const res = await require('axios')({
-      method: "get",
-      url,
-      headers: {
-        'DNT': 1,
-        'Upgrade-Insecure-Request': 1
-      },
-      ...options,
-      responseType: 'arraybuffer'
-    })
-    return res.data
-  } catch (e) {
-    console.log(`Error : ${e}`)
-  }
 }

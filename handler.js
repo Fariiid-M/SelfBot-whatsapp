@@ -36,11 +36,15 @@ module.exports = {
         let chat = global.db.data.chats[m.chat]
         if (typeof chat !== 'object') global.db.data.chats[m.chat] = {}
         if (chat) {
+          if (!('antiviewonce' in chat)) chat.antiviewonce = false
+          if (!('antidelete' in chat)) chat.antidelete = false
           if (!('isMute' in chat)) chat.isMute = false
           if (!('welcome' in chat)) chat.welcome = false
           if (!('sWelcome' in chat)) chat.sWelcome = ''
           if (!('sBye' in chat)) chat.sBye = ''
         } else global.db.data.chats[m.chat] = {
+          antidelete: false,
+          antiviewonce: true,
           isMute: false,
           welcome: false,
           sWelcome: '',
@@ -51,21 +55,17 @@ module.exports = {
         if (typeof setting !== 'object') global.db.data.settings[this.user.jid] = {}
         if (setting) {
           if (!('anticall' in setting)) setting.anticall = false
-          if (!('antiviewonce' in setting)) setting.antiviewonce = true
-          if (!('antidelete' in setting)) setting.antidelete = true
           if (!('autoread' in setting)) setting.autoread = false
           if (!('self' in setting)) setting.self = true
         } else global.db.data.settings[this.user.jid] = {
           anticall: false,
           autoread: false,
           self: true,
-          antiviewonce: true,
-          antidelete: true,
         }
       } catch (e) {
         console.error(e)
       }
-      if (!m.fromMe && setting.self) return
+      if (!m.fromMe && setting?.self) return
       if (typeof m.text !== 'string') m.text = ''
       for (let name in global.plugins) {
         let plugin = global.plugins[name]
@@ -252,7 +252,7 @@ module.exports = {
       } catch (e) {
         console.log(m, m.quoted, e)
       }
-      if (setting.autoread) this.chatRead(m.chat).catch(() => { })
+      if (setting?.autoread) this.chatRead(m.chat).catch(() => { })
     }
   },
   async participantsUpdate({ jid, participants, action }) {
@@ -295,9 +295,9 @@ module.exports = {
                     contentText: tehs,
                     footerText: '',
                     buttons: [{ 
-                      buttonId: `.infogc`, 
+                      buttonId: `Anjing`, 
                       buttonText: { 
-                        displayText: '𝖎𝖓𝖋𝖔 𝖌𝖗𝖔𝖚𝖕 🪶' 
+                        displayText: '👋' 
                       }, 
                       type: 1 
                     }],
@@ -313,10 +313,10 @@ module.exports = {
   },
   async delete(m) {
     if (m.key.fromMe) return
-    if (!db.data.settings[this.user.jid].antidelete) return
-    await this.sendButton(owner[0]+'@s.whatsapp.net', `
+    if (!db.data.chats[m.key.remoteJid].antidelete) return
+    await this.sendButton(m.key.remoteJid, `
 Terdeteksi @${m.participant.split`@`[0]} *( ${m.key.remoteJid.endsWith('@g.us') ? 'Group '+this.getName(m.key.remoteJid) : m.key.remoteJid == 'status@broadcast' ? 'Story WhatsApp' : this.getName(m.key.remoteJid)} )* telah menghapus pesan...`.trim(), '', 'Matikan', '.antidelete off', m.message)
-    this.copyNForward(owner[0]+'@s.whatsapp.net', m.message).catch(e => console.log(e, m))
+    this.copyNForward(m.key.remoteJid, m.message).catch(e => console.log(e, m))
   },
   async onCall(json) {
     if (!db.data.settings[this.user.jid].anticall) return

@@ -1,6 +1,6 @@
-let handler = async(m, { conn }) => {
+let handler = async(m, { conn, usedPrefix, command }) => {
  m.reply('Sedang berburu asupan...')
-   await conn.sendFile(m.chat, pickRandom(asupan), 'asupan.mp4', 'Jangan di bawa ke kamar mandi juga kali...', m)
+   await conn.sendButtonVid(m.chat, pickRandom(asupan), 'Jangan di bawa ke kamar mandi juga kali...', '', 'Next', usedPrefix+command, m)
 }
 handler.help = ['asupan']
 handler.tags = ['tools']
@@ -11,6 +11,8 @@ function pickRandom(list) {
   return list[Math.floor(list.length * Math.random())]
 }
 
+
+// semua cewe disini milik gw bangggg ( - _ - )
 const asupan = [
 "https://b.top4top.io/m_1931yxodg0.mp4",
 "https://k.top4top.io/m_193161p380.mp4",

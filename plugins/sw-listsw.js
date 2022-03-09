@@ -10,7 +10,7 @@ let handler = async (m, { conn, usedPrefix }) => {
 
 ${ress}
 
-*Ambil : ${usedPrefix}getsw <index> <index>*`)
+*Ambil : ${usedPrefix}getsw <nomor> <index>*`)
 }
 handler.tags = ['owner']
 handler.help = ['listsw']

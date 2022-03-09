@@ -17,11 +17,11 @@ if (!text) throw conto(command, usedPrefix, 'Mau cari apa bosqueee??', inQuery, 
    for (let i = 0; i < jumlah; i++) {
      if (!data[i]) continue
       delay(1500)
-       conn.sendFile(m.chat, data[i], 'pinterest.png', '', m)
+       conn.sendFile(m.chat, data[i], 'pinterest.png', data[i], m)
      }
      } else {
          let ddd = await data[Crypto.randomInt(0, data.length)]
-        conn.sendButtonImg(m.chat, ddd, text, '', 'Next', `${usedPrefix+command} ${text}`, m)
+        conn.sendButtonImg(m.chat, ddd, `*${text}*\n( ${ddd} )`, '', 'Next', `${usedPrefix+command} ${text}`, m)
         
                   .catch(_ => {
        conn.sendButton(m.chat, `*Error..*`, ``, `Coba Lagi...`,`${usedPrefix+command} ${text}`, m) 

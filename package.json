@@ -22,16 +22,16 @@
     "whatsapp",
     "js-whatsapp"
   ],
-  "homepage": "https://github.com/Fariiid-M/SELF-BOT",
+  "homepage": "https://github.com/Fariiid-M/SelfBot-whatsapp",
   "author": {
     "name": "Fariiid-M"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Fariiid-M/SELF-BOT.git"
+    "url": "git+https://github.com/Fariiid-M/SelfBot-whatsapp.git"
   },
   "bugs": {
-    "url": "https://github.com/Fariiid-M/SELF-BOT/issues"
+    "url": "https://github.com/Fariiid-M/SelfBot-whatsapp/issues"
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {

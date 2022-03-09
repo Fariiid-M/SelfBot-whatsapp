@@ -14,7 +14,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         
         if (!/video/.test(mime)) return
           if (/webp/.test(mime)) return
-           reply('\n\n   *Sabarr....*   \n\n')
+           m.reply('\n\n   *Sabarr....*   \n\n')
             let media = await conn.downloadAndSaveMediaMessage(q)
             let out = Buffer.alloc(0)
             let ran = getRandom('.mp4')

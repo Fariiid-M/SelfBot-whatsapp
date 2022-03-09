@@ -19,7 +19,7 @@ ${JSON.stringify(ha.participants)}`)
          conn.groupLeave(ha.gid)
     }
 }
- handler.help = ['buatgrup']
- handler.tags = ['owner']
+ handler.help = ['buatgrup'].map(p=>p+` <nama> | ${inUser}`)
+ handler.tags = ['tools']
  handler.command = /^(buatgrup|cgc)$/i
  module.exports = handler
