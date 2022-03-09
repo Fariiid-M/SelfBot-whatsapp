@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="https://telegra.ph/file/4bcdd8995b95b1e363444.jpg" height="1020"/>
+	<img src="https://telegra.ph/file/55e631dbf7a5891e09606.jpg" height="1020"/>
 </p>
 <h1 align="center">SELF BOT WANGSAF</h1>
 
