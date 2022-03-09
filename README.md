@@ -21,6 +21,7 @@ git clone https://github.com/Fariiid-M/SelfBot-whatsapp
 cd SelfBot-whatsapp
 npm i
 npm update 
+node .
 ```
 
 ---------
@@ -58,13 +59,6 @@ Jika berhasil, maka akan muncul pesan seperti:
 ```
 ---------
 
-## Run
-
-```bash
-node .
-```
-
----------
 
 ## Arguments `node . [--options] [<session name>]`
 
