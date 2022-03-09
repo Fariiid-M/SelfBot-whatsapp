@@ -24,23 +24,6 @@ npm update
 node .
 ```
 
----------
-
-## UNTUK PENGGUNA HEROKU
-
-### Add Buildpack
-```
-- heroku/nodejs
-- https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
-- https://github.com/DuckyTeam/heroku-buildpack-imagemagick.git
-```
-* Klik deploy to heroku di atas
-* pergi ke settings lalu pilih `Add Buildpack`.
-* isi dengan buildpack yang atas
-* Pergi ke deploy lalu deploy branch
-
----------
-
   #### Menginstall FFmpeg Di Windows/RDP
 * Unduh salah satu versi FFMMPEG [Di Sini](https://ffmpeg.org/download.html).
 * Ekstrak file ke `C:\` path.
@@ -59,6 +42,20 @@ Jika berhasil, maka akan muncul pesan seperti:
 ```
 ---------
 
+## UNTUK PENGGUNA HEROKU
+
+### Add Buildpack
+```
+- heroku/nodejs
+- https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
+- https://github.com/DuckyTeam/heroku-buildpack-imagemagick.git
+```
+* Klik deploy to heroku di atas
+* pergi ke settings lalu pilih `Add Buildpack`.
+* isi dengan buildpack yang atas
+* Pergi ke deploy lalu deploy branch
+
+---------
 
 ## Arguments `node . [--options] [<session name>]`
 
