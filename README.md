@@ -29,9 +29,9 @@ npm update
 
 ### Add Buildpack
 ```
-* heroku/nodejs
-* https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
-* https://github.com/DuckyTeam/heroku-buildpack-imagemagick.git
+- heroku/nodejs
+- https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
+- https://github.com/DuckyTeam/heroku-buildpack-imagemagick.git
 ```
 * Klik deploy to heroku di atas
 * pergi ke settings lalu pilih `Add Buildpack`.
