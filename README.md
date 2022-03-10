@@ -11,9 +11,9 @@ Simple WhatsApp Bot
 
 
 # Info :
-* Edit nomer owner [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/e81a70ed439ac6512d9e6bd26b867e5daf4031c2/config.js#L5)
-* Auto public? ubah [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/8f70cd1822e4bbd2c2973db11cd0be654a442a92/handler.js#L59) dan [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/8f70cd1822e4bbd2c2973db11cd0be654a442a92/handler.js#L63) menjadi false
-* Edit teks rejected [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/8f70cd1822e4bbd2c2973db11cd0be654a442a92/handler.js#L347)
+* Edit nomer owner [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/config.js#L5)
+* Auto public? ubah [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/handler.js#L59) dan [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/handler.js#L63) menjadi false
+* Edit teks rejected [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/handler.js#L347)
 
 ----
 
