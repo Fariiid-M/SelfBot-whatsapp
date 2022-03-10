@@ -7,4 +7,4 @@ async function handler(m) {
 handler.help = ['getquote'].map(pp=>pp+` ${inPlease(' reply pesan ')}`)
 handler.tags = ['tools']
 handler.command = /^(q|(get|send)quote)$/i
-module.exports = handler
+module.exports = handler 
