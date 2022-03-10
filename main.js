@@ -1,4 +1,4 @@
-require('./config.js')
+require('./config.js') 
 const { WAConnection: _WAConnection } = require('@adiwajshing/baileys')
 const cloudDBAdapter = require('./lib/cloudDBAdapter')
 const { generate } = require('qrcode-terminal')
