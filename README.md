@@ -9,7 +9,18 @@ Simple WhatsApp Bot
 
 [![Grup WhatsApp](https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/BzDqJgRFzEECe2IbE4WtOf)
 
-## UNTUK PENGGUNA WINDOWS/VPS/RDP
+
+# Info :
+* Edit nomer owner [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/e81a70ed439ac6512d9e6bd26b867e5daf4031c2/config.js#L5)
+* Auto public? ubah [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/8f70cd1822e4bbd2c2973db11cd0be654a442a92/handler.js#L59) dan [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/8f70cd1822e4bbd2c2973db11cd0be654a442a92/handler.js#L63) menjadi false
+* Edit teks rejected [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/8f70cd1822e4bbd2c2973db11cd0be654a442a92/handler.js#L347)
+
+----
+
+# Cara Penginstalan :
+
+
+## UNTUK PENGGUNA WINDOWS/VPS/RDP :
 
 * Unduh & Instal Git [`Klik Disini`](https://git-scm.com/downloads)
 * Unduh & Instal NodeJS [`Klik Disini`](https://nodejs.org/en/download)
@@ -24,7 +35,7 @@ npm update
 node .
 ```
 
-  #### Menginstall FFmpeg Di Windows/RDP
+  #### Menginstall FFmpeg Di Windows/RDP :
 * Unduh salah satu versi FFMMPEG [Di Sini](https://ffmpeg.org/download.html).
 * Ekstrak file ke `C:\` path.
 * Ubah nama folder menjadi `ffmpeg`.
@@ -42,7 +53,7 @@ Jika berhasil, maka akan muncul pesan seperti:
 ```
 ---------
 
-## UNTUK PENGGUNA HEROKU
+## UNTUK PENGGUNA HEROKU :
 
 ### Add Buildpack
 ```
