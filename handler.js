@@ -295,7 +295,7 @@ module.exports = {
                     contentText: tehs,
                     footerText: '',
                     buttons: [{ 
-                      buttonId: `Anjing`, 
+                      buttonId: `atytfgjbcfjfgvcvfgvgb`, 
                       buttonText: { 
                         displayText: '👋' 
                       }, 
