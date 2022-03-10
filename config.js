@@ -55,20 +55,27 @@ global.author = sticker_author
 global.wait = '\n\n _*Wait a minute...*_\n\n'
 global.eror = '\n\n _*Error!*_\n\n'
 global.erorlink = '\n\n _*Invalid Link!!*_ \n\n'
+
+//Maalaas nulish manual? 
 global.conto = (usedPrefix, command, teks, anu, cth) => {
 return `${teks}
 
 Penggunaan : ${usedPrefix+command} ${anu}
 Contoh : ${usedPrefix+command} ${cth}`
 }
+
 global.APIeror = (api) => {
 return `Server *${global.APIs[api]}* error, Silahkan coba lagi nanti!`
 }
 
 global.key_imgbb = 'b2fe9aa717edd064de6c76a1f400dbec' //get free in imgbb.com
+
+// Url
 global.APIs = {
  anto: 'https://hardianto.xyz'
 }
+
+// api
 global.APIKeys = {
  'https://hardianto.xyz': 'hardianto'
 }
