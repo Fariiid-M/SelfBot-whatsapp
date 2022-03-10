@@ -11,10 +11,10 @@ Simple WhatsApp Bot
 
 
 # Info :
-* Edit nomer owner [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/config.js#L5)
-* Auto public? ubah [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/handler.js#L59) dan [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/handler.js#L63) menjadi false
-* Edit teks rejected [di sini](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/handler.js#L347)
-* Edit watermark sticker [di sini (packname)](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/config.js#L33) dan [di sini (author)](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/config.js#L38)
+* Edit nomer owner [`di sini`](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/config.js#L5)
+* Auto public? ubah [`di sini`](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/handler.js#L59) dan [`di sini`](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/handler.js#L63) menjadi false
+* Edit teks rejected [`di sini`](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/handler.js#L347)
+* Edit watermark sticker [`di sini (packname)`](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/config.js#L33) dan [`di sini (author)`](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/config.js#L38)
 ----
 
 # Cara Penginstalan :
@@ -36,7 +36,7 @@ node .
 ```
 
   #### Menginstall FFmpeg Di Windows/RDP :
-* Unduh salah satu versi FFMMPEG [Di Sini](https://ffmpeg.org/download.html).
+* Unduh salah satu versi FFMMPEG [`Di Sini`](https://ffmpeg.org/download.html).
 * Ekstrak file ke `C:\` path.
 * Ubah nama folder menjadi `ffmpeg`.
 * Jalankan Command Prompt sebagai Administrator.
