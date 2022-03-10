@@ -2,7 +2,7 @@ let fs = require('fs');
 let chalk = require('chalk');
 
 //Nomer Owner
-global.owner = ['6285890441472','6285606404329'] // Put your number here
+global.owner = ['6285890441472'] // Put your number here
 
 // Petunjuk Di Menu
 global.inUrl = '<link>'
@@ -67,35 +67,12 @@ return `Server *${global.APIs[api]}* error, Silahkan coba lagi nanti!`
 
 global.key_imgbb = 'b2fe9aa717edd064de6c76a1f400dbec' //get free in imgbb.com
 global.APIs = {
- xteam: 'https://api.xteam.xyz',
- anto: 'https://hardianto.xyz',
- zeks: 'https://api.zeks.me',
- sra: 'https://some-random-api.ml'
+ anto: 'https://hardianto.xyz'
 }
 global.APIKeys = {
- 'https://api.xteam.xyz': 'cristian9407',
- 'https://hardianto.xyz': 'hardianto',
- 'https://api.zeks.me': 'apivinz'
+ 'https://hardianto.xyz': 'hardianto'
 }
-/**
- API XTEAM:
-        - saunthesip
-        - attp / ttp
-        - darkjoke
-        - 
-        -
- API HARDIANTO:
-        - yt search
-        - 
-        -
- API SOME RANDOM: 
-        - wasted
-        -
- API ZEKS:
-        - siapakah aku
-        -
-        -
-**/
+
 global.kodeBahasa = `╭─[ *code > country* ]
 │
 │ *af* > Afrikaans
