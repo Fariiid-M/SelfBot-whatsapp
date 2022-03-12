@@ -17,6 +17,13 @@ Simple WhatsApp Bot
 * Edit watermark sticker [`di sini (packname)`](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/config.js#L33) dan [`di sini (author)`](https://github.com/Fariiid-M/SelfBot-whatsapp/blob/main/config.js#L38)
 ----
 
+# cara mudah ambil session
+* di perlukan 2 hp ( 1 untuk qr code dan 1 untuk scan )
+* klik [`di sini`](https://replit.com/@FariidOke/just-to-get-session?lite=1&outputonly=1#.replit) 
+* lalu klik `run` di sebelah atas
+* scan
+----
+
 # Cara Penginstalan :
 
 
@@ -65,7 +72,7 @@ Jika berhasil, maka akan muncul pesan seperti:
 * pergi ke settings lalu pilih `Add Buildpack`.
 * isi dengan buildpack yang atas
 * Pergi ke deploy lalu deploy branch
-* ambil session [`di sini`](https://replit.com/@FariidOke/just-to-get-session?lite=1&outputonly=1#.replit)
+
 ---------
 
 ## Arguments `node . [--options] [<session name>]`
