@@ -65,7 +65,7 @@ Jika berhasil, maka akan muncul pesan seperti:
 * pergi ke settings lalu pilih `Add Buildpack`.
 * isi dengan buildpack yang atas
 * Pergi ke deploy lalu deploy branch
-
+* ambil session [`di sini`](https://replit.com/@FariidOke/just-to-get-session?lite=1&outputonly=1#.replit)
 ---------
 
 ## Arguments `node . [--options] [<session name>]`
