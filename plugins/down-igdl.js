@@ -12,7 +12,7 @@ let handler = async (m, { conn, args, command, usedPrefix }) => {
     *Url Download :* ${res.link}
     `, m)
     } catch {
-       throw error  
+       throw eror  
     }
     }
     handler.tags = ['downloader']
