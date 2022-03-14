@@ -9,7 +9,7 @@ let handler = async (m, { usedPrefix, command, conn, args }) => {
             m.reply(`*ANTI VIEW-ONCE* ( ${isEnable?'Di Aktifkan':'Di Matikan'} )`)
     //anti delete
     } else if (/antidelete/.test(command)){
-           chst.antidelete = isEnable;
+           chat.antidelete = isEnable;
             m.reply(`*ANTI DELETE* ( ${isEnable?'Di Aktifkan':'Di Matikan'} )`)  
     //anti call
     } else if (/anticall/.test(command)){
