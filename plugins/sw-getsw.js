@@ -1,17 +1,15 @@
-// Masih make wa mot?
-// - 
-// alergi wa mot
-
-
 let handler = async (m, { usedPrefix, command, conn, args }) => {
 if  (args.length == 0) throw conto(usedPrefix, command, `Kirim perintah ${usedPrefix+command} <nomer> (spasi) <index>\nKirim perintah ${usedPrefix+command} <nomer> (spasi) all (get all story)`, `<nomer> (spasi) <index>`, `${owner[0]} 1`)
     let target;
     let index;
     if (m.quoted){
-         target = m.quoted.sender
+         target = m.quoted.sender // using reply
          index = args[0]
+        } else  if (m.mentionedJid == 1) {
+            target = mentionedJid[0] // using tag
+            index = args[1]
         } else {
-            target = parseInt(args[0]) + '@s.whatsapp.net'
+            target = parseInt(args[0].replace(/[^0-9]/g, '')) + '@s.whatsapp.net' 
             index = args[1]
         }
     let res = await conn.getStories();
