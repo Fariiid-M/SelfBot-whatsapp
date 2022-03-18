@@ -1,7 +1,4 @@
-<p align="center">
-	<img src="https://telegra.ph/file/55e631dbf7a5891e09606.jpg" height="1020"/>
-</p>
-<h1 align="center">SELF BOT WANGSAF</h1>
+<a href="https://github.com/Fariiid-M/"><img src="https://cardivo.vercel.app/api?name=SELF BOT WHATSAPP&description=Whatsapp bot using baileys recode from wabot-aq&image=https://telegra.ph/file/55e631dbf7a5891e09606.jpg&usqp=CAU&backgroundColor=%23ecf0f1&github=Fariiid-M&pattern=leaf&colorPattern=%23eaeaea" /></a>
 
 Simple WhatsApp Bot
 
