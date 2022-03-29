@@ -3,20 +3,16 @@ let handler = async (m, { conn, args, participants }) => {
     let ownerGroup = m.chat.split("-")[0] + '@s.whatsapp.net' || groupMetadata.owner
     
     // detect target
-    let array = []
-    for (let i of participants){
-        i.jid.startsWith(parseInt(args[0]?.substring(0, 4))) ? array.push(i.jid) : ''
-    }
+    let member = participants.filter(({jid}) => jid.startsWith(parseInt(args[0]?.substring(0, 4))))
 
     //kick target
-    for (let user of array){
-        if (user?.endsWith('@s.whatsapp.net')){
-            let userr = participants.find(u => u.jid == user)
+    for (let user of member){
+        if (user.jid?.endsWith('@s.whatsapp.net')){
             delay(5000)
-            if (user == conn.user.jid) continue
-            if (user == m.sender) continue
-            if ((userr.isAdmin || userr.isSuperAdmin)) continue
-              conn.groupRemove(m.chat, [user])
+            if (user.jid == conn.user.jid) continue
+            if (user.jid == m.sender) continue
+            if ((user.isAdmin || user.isSuperAdmin)) continue
+              conn.groupRemove(m.chat, [user.jid])
         } 
     }
 }
