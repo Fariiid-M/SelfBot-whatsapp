@@ -1,10 +1,10 @@
 let handler = async (m, { conn, args, participants }) => {
     if (!args[0]) throw `*Masukan kode nomornya yang mau di kick masal hehe..*`
-    let nom = parseInt(args[0]?.substring(0, 4);
+    let nom = parseInt(args[0]?.substring(0, 4));
     // detect target
-    let member = participants.filter(({jid}) => jid.startsWith(nom)))
+    let member = participants.filter(({jid}) => jid.startsWith(nom));
     
-    await conn.reply(m.chat, `*${nom}*\n\n@${member.map(({jid, isAdmin, isSuperAdmin}) => jid + ` ( ${isSuperAdmin ? 'Owner Group' : isAdmin ? 'Admin Group'} )`)}`, m, { contextInfo: { mentionedJid: member.map(({jid}) => jid)}})
+    await conn.reply(m.chat, `*${nom}*\n\n@${member.map(({jid, isAdmin, isSuperAdmin}) => jid.reolace(/[^0-9]/g, '') + isSuperAdmin ? '(Owner Group)' : isAdmin ? '(Admin Group)' : '')}`, m, { contextInfo: { mentionedJid: member.map(({jid}) => jid)}})
     
    //kick target
     for (let user of member){
