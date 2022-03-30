@@ -72,12 +72,12 @@ global.key_imgbb = 'b2fe9aa717edd064de6c76a1f400dbec' //get free in imgbb.com
 
 // Url
 global.APIs = {
- anto: 'https://hardianto.xyz'
+ xcoders: 'https://api-xcoders.xyz'
 }
 
 // api
 global.APIKeys = {
- 'https://hardianto.xyz': 'hardianto'
+ 'https://api-xcoders.xyz': 'frhn'
 }
 
 global.kodeBahasa = `╭─[ *code > country* ]
