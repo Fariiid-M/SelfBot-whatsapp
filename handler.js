@@ -44,7 +44,7 @@ module.exports = {
           if (!('sBye' in chat)) chat.sBye = ''
         } else global.db.data.chats[m.chat] = {
           antidelete: false,
-          antiviewonce: true,
+          antiviewonce: false,
           isMute: false,
           welcome: false,
           sWelcome: '',
