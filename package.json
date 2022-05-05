@@ -39,6 +39,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@adiwajshing/baileys": "github:melcanz/baileys",
+    "@bochilteam/scraper": "^1.0.2",
     "awesome-phonenumber": "^2.54.0",
     "brainly-scraper-v2": "^2.0.4-1",
     "canvas": "^2.9.0",
